@@ -56,6 +56,22 @@ const projects = [
     video: undefined, poster: "/poster-de-hunt.webp", posterFit: "cover" as const,
     tiktok: "7683104923969408288",
   },
+  {
+    id: 8, title: "De Hunt 2026", category: "Reel · Jeugdwerk Kaag & Braassem", year: "2026",
+    description: "Reel van De Hunt 2026 voor Jeugdwerk Kaag & Braassem.",
+    tags: ["Reel"], duration: "",
+    gradient: "from-neutral-900 via-zinc-800 to-stone-900",
+    video: undefined, poster: "/poster-de-hunt-2026.webp", posterFit: "cover" as const,
+    instagram: "DeR1XNUskHs",
+  },
+  {
+    id: 9, title: "Maak Kennis: Jurjen", category: "Reel · Jeugdwerk Kaag & Braassem", year: "2026",
+    description: "Kennismakingsvideo met jongerenwerker Jurjen.",
+    tags: ["Reel"], duration: "",
+    gradient: "from-stone-900 via-zinc-800 to-neutral-900",
+    video: undefined, poster: "/poster-jurjen.webp", posterFit: "cover" as const,
+    instagram: "De_zOypMzNZ",
+  },
 ];
 
 const photos: { src: string; alt: string }[] = [

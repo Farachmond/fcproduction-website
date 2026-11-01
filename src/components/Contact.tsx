@@ -166,12 +166,18 @@ export default function Contact() {
         >
           {[
             { label: "Adres", value: "Den Haag, NL" },
-            { label: "E-mail", value: "Farachmond@gmail.com" },
-            { label: "Telefoon", value: "+31 6 49 86 64 71" },
+            { label: "E-mail", value: "Farachmond@gmail.com", href: "mailto:farachmond@gmail.com" },
+            { label: "Telefoon", value: "+31 6 16 05 72 28", href: "tel:+31616057228" },
+            { label: "WhatsApp", value: "Stuur een bericht", href: "https://wa.me/31616057228" },
           ].map((item) => (
             <div key={item.label} className="text-center">
               <p className="section-label mb-1">{item.label}</p>
-              <p className="text-sm text-white/60">{item.value}</p>
+              {item.href ? (
+                <a href={item.href} {...(item.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                  className="text-sm text-white/60 hover:text-white transition-colors duration-300">{item.value}</a>
+              ) : (
+                <p className="text-sm text-white/60">{item.value}</p>
+              )}
             </div>
           ))}
         </motion.div>

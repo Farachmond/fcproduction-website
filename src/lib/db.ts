@@ -19,7 +19,8 @@ export async function db<T = unknown>(
     method,
     headers: {
       apikey: SERVICE_KEY,
-      Authorization: `Bearer ${SERVICE_KEY}`,
+      // Oude service_role-sleutels (JWT) ook als Bearer; nieuwe sb_secret_-sleutels alleen als apikey.
+      ...(SERVICE_KEY.startsWith("eyJ") ? { Authorization: `Bearer ${SERVICE_KEY}` } : {}),
       "Content-Type": "application/json",
       ...(prefer ? { Prefer: prefer } : {}),
     },

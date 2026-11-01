@@ -38,20 +38,6 @@ const projects = [
     video: "/intro-symposium.mov", poster: "/poster-intro-symposium.jpg", posterFit: "cover" as const,
   },
   {
-    id: 4, title: "Andy Schleck Edit", category: "Video Edit", year: "2024",
-    description: "Video edit voor Andy Schleck.",
-    tags: ["Video Edit", "Sport"], duration: "",
-    gradient: "from-neutral-900 via-stone-800 to-zinc-900",
-    video: "/andy-schleck.mp4", poster: "/poster-andy-schleck.jpg", posterFit: "cover" as const,
-  },
-  {
-    id: 5, title: "The Breakfast Club Trailer", category: "Film", year: "2026",
-    description: "Zelfgemaakte trailer van The Breakfast Club.",
-    tags: ["Trailer", "Film"], duration: "",
-    gradient: "from-zinc-900 via-stone-800 to-neutral-900",
-    video: "/breakfast-club-trailer.mp4", poster: "/poster-breakfast-club.jpg", posterFit: "cover" as const,
-  },
-  {
     // Instagram Reel (fallback zonder eigen MP4). Zet hier later `video: "/bestand.mp4"` neer,
     // dan werkt deze kaart precies zoals de andere films.
     id: 6, title: "Nacht van de Rechtspraak", category: "Reel · Rechtbank Rotterdam", year: "2026",

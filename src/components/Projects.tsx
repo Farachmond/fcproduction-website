@@ -33,6 +33,14 @@ const projects = [
     tiktok: "7683104923969408288",
   },
   {
+    id: 10, title: "Aftermovie Nacht van de Rechtspraak", category: "Camera & assistent montage", year: "2026",
+    description: "Aftermovie van de Rotterdamse Nacht van de Rechtspraak voor Rechtbank Rotterdam. Camera en assistentie bij de montage.",
+    tags: ["Aftermovie", "Camera"], duration: "",
+    gradient: "from-zinc-900 via-stone-800 to-neutral-900",
+    video: undefined, poster: "/poster-aftermovie-nacht.webp", posterFit: "cover" as const,
+    instagram: "DeJd3l0srVE",
+  },
+  {
     id: 3, title: "Intro Symposium", category: "Motion Graphics", year: "2026",
     description: "Intro video voor het ROC Mondriaan Symposium.",
     tags: ["Motion Graphics", "Event"], duration: "",
@@ -46,6 +54,14 @@ const projects = [
     gradient: "from-stone-900 via-zinc-800 to-neutral-900",
     video: undefined, poster: "/poster-jurjen.webp", posterFit: "cover" as const,
     instagram: "De_zOypMzNZ",
+  },
+  {
+    id: 11, title: "YOUR Evening 2026", category: "Camera · Montage door ByShane", year: "2026",
+    description: "Aftermovie van YOUR Evening 2026 voor ROC Mondriaan. Camera; montage door ByShane.",
+    tags: ["Aftermovie", "Camera"], duration: "",
+    gradient: "from-neutral-900 via-stone-800 to-zinc-900",
+    video: undefined, poster: "/poster-your-evening.webp", posterFit: "cover" as const,
+    instagram: "DaQQxTHD_Hd",
   },
   {
     // Instagram Reel (fallback zonder eigen MP4). Zet hier later `video: "/bestand.mp4"` neer,

@@ -51,6 +51,16 @@ const projects = [
     gradient: "from-zinc-900 via-stone-800 to-neutral-900",
     video: "/breakfast-club-trailer.mp4", poster: "/poster-breakfast-club.jpg", posterFit: "cover" as const,
   },
+  {
+    // Instagram Reel (fallback zonder eigen MP4). Zet hier later `video: "/bestand.mp4"` neer,
+    // dan werkt deze kaart precies zoals de andere films.
+    id: 6, title: "Nacht van de Rechtspraak", category: "Reel · Rechtbank Rotterdam", year: "2026",
+    description: "Reel voor de Rotterdamse Nacht van de Rechtspraak.",
+    tags: ["Reel"], duration: "",
+    gradient: "from-stone-900 via-neutral-800 to-zinc-900",
+    video: undefined, poster: "/poster-nacht-rechtspraak.webp", posterFit: "cover" as const,
+    instagram: "DdRZU32MByB",
+  },
 ];
 
 const photos: { src: string; alt: string }[] = [
@@ -68,6 +78,7 @@ export default function Projects() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
   const [activeVideo, setActiveVideo] = useState<string | null>(null);
+  const [activeInstagram, setActiveInstagram] = useState<string | null>(null);
   const [activePhoto, setActivePhoto] = useState<string | null>(null);
   const isMobile = useIsMobile();
 
@@ -116,9 +127,12 @@ export default function Projects() {
           {[...projects, ...projects].map((project, i) => (
             <div
               key={i}
-              className={`flex-shrink-0 aspect-[3/4] relative overflow-hidden rounded-sm ${project.video ? "cursor-pointer" : "cursor-default"}`}
+              className={`flex-shrink-0 aspect-[3/4] relative overflow-hidden rounded-sm ${project.video || project.instagram ? "cursor-pointer" : "cursor-default"}`}
               style={{ width: isMobile ? "130px" : "256px" }}
-              onClick={() => project.video && setActiveVideo(project.video)}
+              onClick={() => {
+                if (project.video) setActiveVideo(project.video);
+                else if (project.instagram) setActiveInstagram(project.instagram);
+              }}
             >
               <ProjectCardInner project={project} isMobile={isMobile} />
             </div>
@@ -139,6 +153,11 @@ export default function Projects() {
       {/* Video lightbox */}
       <AnimatePresence>
         {activeVideo && <VideoModal src={activeVideo} onClose={() => setActiveVideo(null)} />}
+      </AnimatePresence>
+
+      {/* Instagram Reel lightbox */}
+      <AnimatePresence>
+        {activeInstagram && <InstagramModal id={activeInstagram} onClose={() => setActiveInstagram(null)} />}
       </AnimatePresence>
 
       {/* Photo lightbox */}
@@ -180,6 +199,7 @@ function Marquee3D({ children, speed = 30, reverse = false, isMobile = false, no
 function ProjectCardInner({ project, isMobile }: { project: typeof projects[0]; isMobile: boolean }) {
   const [hovered, setHovered] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const playable = !!(project.video || project.instagram);
 
   const handleMouseEnter = () => {
     if (isMobile) return;
@@ -212,7 +232,7 @@ function ProjectCardInner({ project, isMobile }: { project: typeof projects[0]; 
           style={{ opacity: hovered ? 1 : 0 }}
         />
       )}
-      {!project.video && (
+      {!playable && (
         <div className="absolute inset-0 opacity-[0.04]" style={{
           backgroundImage: "linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px)",
           backgroundSize: "24px 24px",
@@ -221,6 +241,14 @@ function ProjectCardInner({ project, isMobile }: { project: typeof projects[0]; 
       {(project as any).comingSoon && (
         <div className="absolute top-3 left-1/2 -translate-x-1/2 px-2 py-0.5 border z-10" style={{ borderColor: "rgba(255,255,255,0.2)", background: "rgba(8,8,8,0.6)" }}>
           <span className="section-label" style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.55rem" }}>Coming Soon</span>
+        </div>
+      )}
+      {/* Instagram Reel zonder poster: subtiel play-icoon zodat de kaart niet leeg oogt */}
+      {project.instagram && !project.poster && !isMobile && (
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" style={{ opacity: hovered ? 0 : 1, transition: "opacity 0.3s" }}>
+          <div className="w-12 h-12 border border-white/30 rounded-full flex items-center justify-center">
+            <svg className="w-4 h-4 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+          </div>
         </div>
       )}
       {/* Info overlay */}
@@ -234,9 +262,9 @@ function ProjectCardInner({ project, isMobile }: { project: typeof projects[0]; 
         <div className="absolute inset-0 flex flex-col justify-end p-5"
           style={{
             opacity: hovered ? 1 : 0, transition: "opacity 0.4s",
-            background: project.video ? "linear-gradient(to top, rgba(8,8,8,0.85) 0%, transparent 60%)" : "rgba(8,8,8,0.88)"
+            background: playable ? "linear-gradient(to top, rgba(8,8,8,0.85) 0%, transparent 60%)" : "rgba(8,8,8,0.88)"
           }}>
-          {project.video ? (
+          {playable ? (
             <div className="w-full">
               <div className="flex items-center gap-2 mb-3">
                 <div className="w-8 h-8 border border-white/40 rounded-full flex items-center justify-center">
@@ -258,7 +286,7 @@ function ProjectCardInner({ project, isMobile }: { project: typeof projects[0]; 
         </div>
       )}
       {/* Mobile tap indicator for videos */}
-      {isMobile && project.video && (
+      {isMobile && playable && (
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
           <div className="w-8 h-8 border border-white/50 rounded-full flex items-center justify-center" style={{ background: "rgba(0,0,0,0.4)" }}>
             <svg className="w-3 h-3 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
@@ -338,6 +366,47 @@ function VideoModal({ src, onClose }: { src: string; onClose: () => void }) {
               }
             </button>
           </div>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}
+
+function InstagramModal({ id, onClose }: { id: string; onClose: () => void }) {
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => { document.removeEventListener("keydown", onKey); document.body.style.overflow = ""; };
+  }, [onClose]);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }}
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-10"
+      style={{ background: "rgba(0,0,0,0.96)" }}
+      onClick={onClose}
+    >
+      <motion.div
+        initial={{ scale: 0.97, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.97, opacity: 0 }}
+        transition={{ duration: 0.2 }}
+        className="relative w-full flex flex-col items-center"
+        style={{ maxWidth: "420px" }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button onClick={onClose} className="self-end mb-3 flex items-center gap-2 text-xs tracking-widest uppercase" style={{ color: "rgba(255,255,255,0.5)" }}>
+          Sluiten <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+        </button>
+        <div className="relative w-full bg-black rounded-sm overflow-hidden">
+          <iframe
+            src={`https://www.instagram.com/reel/${id}/embed`}
+            title="Instagram Reel"
+            allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+            allowFullScreen
+            scrolling="no"
+            className="w-full block"
+            style={{ height: "min(80vh, 760px)", border: 0 }}
+          />
         </div>
       </motion.div>
     </motion.div>

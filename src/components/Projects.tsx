@@ -52,13 +52,13 @@ const projects = [
     video: "/breakfast-club-trailer.mp4", poster: "/poster-breakfast-club.jpg", posterFit: "cover" as const,
   },
   {
-    // Instagram Reel (fallback zonder eigen MP4). Zet hier later `video: "/bestand.mp4"` neer
-    // en een `poster`, dan werkt deze kaart precies zoals de andere films.
-    id: 6, title: "Instagram Reel", category: "Reel", year: "2026",
-    description: "Reel gemaakt door FCPRODUCTION.",
+    // Instagram Reel (fallback zonder eigen MP4). Zet hier later `video: "/bestand.mp4"` neer,
+    // dan werkt deze kaart precies zoals de andere films.
+    id: 6, title: "Nacht van de Rechtspraak", category: "Reel · Rechtbank Rotterdam", year: "2026",
+    description: "Reel voor de Rotterdamse Nacht van de Rechtspraak.",
     tags: ["Reel"], duration: "",
     gradient: "from-stone-900 via-neutral-800 to-zinc-900",
-    video: undefined, poster: undefined,
+    video: undefined, poster: "/poster-nacht-rechtspraak.webp", posterFit: "cover" as const,
     instagram: "DdRZU32MByB",
   },
 ];

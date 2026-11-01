@@ -12,7 +12,7 @@ export default function About() {
 
   return (
     <section id="about" ref={ref} className="relative py-32 px-6 lg:px-12 overflow-hidden"
-      style={{ background: "var(--bg-secondary)" }}>
+      style={{ background: "var(--bg)" }}>
 
       {/* Bokeh */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full blur-[150px] pointer-events-none bokeh-b"

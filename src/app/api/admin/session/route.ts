@@ -19,7 +19,7 @@ export async function GET(req: Request) {
 
 /** Inloggen met het admin-wachtwoord. Max. 5 pogingen per 15 minuten. */
 export async function POST(req: Request) {
-  if (!dbConfigured() || !process.env.ADMIN_SESSION_SECRET) {
+  if (!dbConfigured() || !process.env.ADMIN_PASSWORD) {
     return NextResponse.json({ error: "Beheer is nog niet geconfigureerd." }, { status: 503 });
   }
   if (await rateLimited("login", clientIpHash(req), 5, 15)) {

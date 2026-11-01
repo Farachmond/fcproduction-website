@@ -34,6 +34,7 @@ const REASON_LABEL: Record<string, string> = {
   "weinig-inhoud": "weinig inhoud",
   "te-snel-ingevuld": "extreem snel ingevuld",
   "eerder-review-van-zelfde-adres": "al eerder een review vanaf hetzelfde adres",
+  "handmatige-controle": "wacht op jouw goedkeuring (spamcontrole Turnstile nog niet ingesteld)",
 };
 
 const btn = "px-4 py-2 text-[0.65rem] font-semibold tracking-widest uppercase border transition-colors duration-200";

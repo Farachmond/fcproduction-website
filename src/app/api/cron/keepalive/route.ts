@@ -9,7 +9,10 @@ export const dynamic = "force-dynamic";
  */
 export async function GET(req: Request) {
   const secret = process.env.CRON_SECRET;
-  if (!secret || req.headers.get("authorization") !== `Bearer ${secret}`) {
+  const allowed = secret
+    ? req.headers.get("authorization") === `Bearer ${secret}`
+    : (req.headers.get("user-agent") || "").startsWith("vercel-cron/");
+  if (!allowed) {
     return NextResponse.json({ error: "Niet toegestaan." }, { status: 401 });
   }
   if (!dbConfigured()) return NextResponse.json({ ok: false });

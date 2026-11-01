@@ -2,7 +2,13 @@
 import { createHash, createHmac, timingSafeEqual } from "crypto";
 import { db } from "./db";
 
-const SALT = process.env.ADMIN_SESSION_SECRET || "fc-reviews";
+const SESSION_SECRET =
+  process.env.ADMIN_SESSION_SECRET || process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY || "";
+const SALT = SESSION_SECRET || "fc-reviews";
+
+export function turnstileConfigured() {
+  return Boolean(process.env.TURNSTILE_SECRET_KEY && process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY);
+}
 
 export function sha256(input: string) {
   return createHash("sha256").update(input).digest("hex");
@@ -50,8 +56,8 @@ export const ADMIN_COOKIE = "fc_admin";
 const SESSION_DAYS = 7;
 
 function sign(value: string) {
-  const secret = process.env.ADMIN_SESSION_SECRET;
-  if (!secret) throw new Error("ADMIN_SESSION_SECRET ontbreekt");
+  const secret = SESSION_SECRET;
+  if (!secret) throw new Error("Sessie-geheim ontbreekt");
   return createHmac("sha256", secret).update(value).digest("hex");
 }
 

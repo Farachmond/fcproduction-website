@@ -12,8 +12,8 @@ export default function Home() {
       <Nav />
       <Hero />
       <Projects />
-      {/* Reviews verschijnen zodra de spamcontrole (Turnstile) is geconfigureerd in Vercel */}
-      {process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY && process.env.SUPABASE_URL ? <Reviews /> : null}
+      {/* Reviews verschijnen zodra de database is gekoppeld in Vercel */}
+      {process.env.SUPABASE_URL ? <Reviews /> : null}
       <About />
       <Contact />
       <Footer />

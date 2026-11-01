@@ -217,7 +217,7 @@ function ReviewForm({ onPublished }: { onPublished: () => void }) {
     if (!form.name.trim() || !form.body.trim()) return setError("Vul je naam en review in.");
     if (!rating) return setError("Kies een sterrenbeoordeling.");
     if (!consent) return setError("Geef toestemming voor publicatie.");
-    if (!token) return setError("Wacht even tot de beveiligingscontrole klaar is.");
+    if (SITE_KEY && !token) return setError("Wacht even tot de beveiligingscontrole klaar is.");
     setState("sending");
     try {
       const res = await fetch("/api/reviews", {
@@ -299,8 +299,7 @@ function ReviewForm({ onPublished }: { onPublished: () => void }) {
         </span>
       </label>
 
-      <div ref={widgetEl} className="min-h-[65px]" />
-      {!SITE_KEY && <p className="text-xs" style={{ color: "rgba(161,161,170,0.6)" }}>Het reviewformulier is nog niet geactiveerd.</p>}
+      {SITE_KEY && <div ref={widgetEl} className="min-h-[65px]" />}
 
       {error && <p className="text-sm" role="alert" style={{ color: "#fca5a5" }}>{error}</p>}
 

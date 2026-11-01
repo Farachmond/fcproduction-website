@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { db, dbConfigured } from "@/lib/db";
-import { clientIpHash, rateLimited, sha256, verifyTurnstile } from "@/lib/security";
+import { clientIpHash, rateLimited, sha256, turnstileConfigured, verifyTurnstile } from "@/lib/security";
 import { normalize, spamReasons } from "@/lib/spam";
 import { stats, type PublicReview } from "@/lib/reviews";
 
@@ -57,12 +57,17 @@ export async function POST(req: Request) {
   if (!consent) errors.push("Geef toestemming voor publicatie.");
   if (errors.length) return NextResponse.json({ error: errors.join(" ") }, { status: 400 });
 
-  const turnstile = await verifyTurnstile(
-    typeof payload.turnstileToken === "string" ? payload.turnstileToken : undefined,
-    req.headers.get("x-forwarded-for")
-  );
-  if (!turnstile.ok) {
-    return NextResponse.json({ error: "De beveiligingscontrole is mislukt. Probeer het opnieuw." }, { status: 400 });
+  // Met Turnstile: bots worden geweigerd en goede reviews komen direct online.
+  // Zonder Turnstile: alle reviews gaan eerst naar de wachtrij in het beheerpaneel.
+  const captcha = turnstileConfigured();
+  if (captcha) {
+    const turnstile = await verifyTurnstile(
+      typeof payload.turnstileToken === "string" ? payload.turnstileToken : undefined,
+      req.headers.get("x-forwarded-for")
+    );
+    if (!turnstile.ok) {
+      return NextResponse.json({ error: "De beveiligingscontrole is mislukt. Probeer het opnieuw." }, { status: 400 });
+    }
   }
 
   const ipHash = clientIpHash(req);
@@ -82,6 +87,7 @@ export async function POST(req: Request) {
       `reviews?select=id&ip_hash=eq.${ipHash}&created_at=gte.${encodeURIComponent(new Date(Date.now() - 30 * 86_400_000).toISOString())}&limit=1`
     );
     if (sameIp.length) reasons.push("eerder-review-van-zelfde-adres");
+    if (!captcha) reasons.push("handmatige-controle");
 
     const status = reasons.length ? "pending" : "published";
     await db("reviews", {

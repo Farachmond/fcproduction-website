@@ -24,11 +24,13 @@ const projects = [
     poster: "/feel-good-poster.png", posterFit: "cover" as const,
   },
   {
-    id: 2, title: "Showreel", category: "Showreel", year: "2026",
-    description: "Mijn persoonlijke showreel.",
-    tags: ["Showreel", "Best Of"], duration: "",
-    gradient: "from-neutral-900 via-zinc-800 to-stone-900",
-    video: undefined, poster: undefined, comingSoon: true,
+    // TikTok-video (fallback zonder eigen MP4).
+    id: 7, title: "The Hunt Promo", category: "TikTok · Jeugdwerk Kaag & Braassem", year: "2026",
+    description: "Promovideo voor De Hunt van Jeugdwerk Kaag & Braassem.",
+    tags: ["TikTok"], duration: "",
+    gradient: "from-zinc-900 via-neutral-800 to-stone-900",
+    video: undefined, poster: "/poster-de-hunt.webp", posterFit: "cover" as const,
+    tiktok: "7683104923969408288",
   },
   {
     id: 3, title: "Intro Symposium", category: "Motion Graphics", year: "2026",
@@ -36,6 +38,14 @@ const projects = [
     tags: ["Motion Graphics", "Event"], duration: "",
     gradient: "from-stone-900 via-zinc-800 to-neutral-900",
     video: "/intro-symposium.mov", poster: "/poster-intro-symposium.jpg", posterFit: "cover" as const,
+  },
+  {
+    id: 9, title: "Maak Kennis: Jurjen", category: "Reel · Jeugdwerk Kaag & Braassem", year: "2026",
+    description: "Kennismakingsvideo met jongerenwerker Jurjen.",
+    tags: ["Reel"], duration: "",
+    gradient: "from-stone-900 via-zinc-800 to-neutral-900",
+    video: undefined, poster: "/poster-jurjen.webp", posterFit: "cover" as const,
+    instagram: "De_zOypMzNZ",
   },
   {
     // Instagram Reel (fallback zonder eigen MP4). Zet hier later `video: "/bestand.mp4"` neer,
@@ -48,29 +58,12 @@ const projects = [
     instagram: "DdRZU32MByB",
   },
   {
-    // TikTok-video (fallback zonder eigen MP4).
-    id: 7, title: "The Hunt Promo", category: "TikTok · Jeugdwerk Kaag & Braassem", year: "2026",
-    description: "Promovideo voor De Hunt van Jeugdwerk Kaag & Braassem.",
-    tags: ["TikTok"], duration: "",
-    gradient: "from-zinc-900 via-neutral-800 to-stone-900",
-    video: undefined, poster: "/poster-de-hunt.webp", posterFit: "cover" as const,
-    tiktok: "7683104923969408288",
-  },
-  {
     id: 8, title: "The Hunt Aftermovie", category: "Reel · Jeugdwerk Kaag & Braassem", year: "2026",
     description: "Reel van De Hunt 2026 voor Jeugdwerk Kaag & Braassem.",
     tags: ["Reel"], duration: "",
     gradient: "from-neutral-900 via-zinc-800 to-stone-900",
     video: undefined, poster: "/poster-de-hunt-2026.webp", posterFit: "cover" as const,
     instagram: "DeR1XNUskHs",
-  },
-  {
-    id: 9, title: "Maak Kennis: Jurjen", category: "Reel · Jeugdwerk Kaag & Braassem", year: "2026",
-    description: "Kennismakingsvideo met jongerenwerker Jurjen.",
-    tags: ["Reel"], duration: "",
-    gradient: "from-stone-900 via-zinc-800 to-neutral-900",
-    video: undefined, poster: "/poster-jurjen.webp", posterFit: "cover" as const,
-    instagram: "De_zOypMzNZ",
   },
 ];
 

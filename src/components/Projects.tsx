@@ -49,7 +49,7 @@ const projects = [
   },
   {
     // TikTok-video (fallback zonder eigen MP4).
-    id: 7, title: "De Hunt", category: "TikTok · Jeugdwerk Kaag & Braassem", year: "2026",
+    id: 7, title: "The Hunt Promo", category: "TikTok · Jeugdwerk Kaag & Braassem", year: "2026",
     description: "Promovideo voor De Hunt van Jeugdwerk Kaag & Braassem.",
     tags: ["TikTok"], duration: "",
     gradient: "from-zinc-900 via-neutral-800 to-stone-900",
@@ -57,7 +57,7 @@ const projects = [
     tiktok: "7683104923969408288",
   },
   {
-    id: 8, title: "De Hunt 2026", category: "Reel · Jeugdwerk Kaag & Braassem", year: "2026",
+    id: 8, title: "The Hunt Aftermovie", category: "Reel · Jeugdwerk Kaag & Braassem", year: "2026",
     description: "Reel van De Hunt 2026 voor Jeugdwerk Kaag & Braassem.",
     tags: ["Reel"], duration: "",
     gradient: "from-neutral-900 via-zinc-800 to-stone-900",

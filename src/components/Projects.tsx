@@ -47,6 +47,15 @@ const projects = [
     video: undefined, poster: "/poster-nacht-rechtspraak.webp", posterFit: "cover" as const,
     instagram: "DdRZU32MByB",
   },
+  {
+    // TikTok-video (fallback zonder eigen MP4).
+    id: 7, title: "De Hunt", category: "TikTok · Jeugdwerk Kaag & Braassem", year: "2026",
+    description: "Promovideo voor De Hunt van Jeugdwerk Kaag & Braassem.",
+    tags: ["TikTok"], duration: "",
+    gradient: "from-zinc-900 via-neutral-800 to-stone-900",
+    video: undefined, poster: "/poster-de-hunt.webp", posterFit: "cover" as const,
+    tiktok: "7683104923969408288",
+  },
 ];
 
 const photos: { src: string; alt: string }[] = [
@@ -64,7 +73,7 @@ export default function Projects() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
   const [activeVideo, setActiveVideo] = useState<string | null>(null);
-  const [activeInstagram, setActiveInstagram] = useState<string | null>(null);
+  const [activeEmbed, setActiveEmbed] = useState<{ src: string; title: string } | null>(null);
   const [activePhoto, setActivePhoto] = useState<string | null>(null);
   const isMobile = useIsMobile();
 
@@ -113,11 +122,12 @@ export default function Projects() {
           {[...projects, ...projects].map((project, i) => (
             <div
               key={i}
-              className={`flex-shrink-0 aspect-[3/4] relative overflow-hidden rounded-sm ${project.video || project.instagram ? "cursor-pointer" : "cursor-default"}`}
+              className={`flex-shrink-0 aspect-[3/4] relative overflow-hidden rounded-sm ${project.video || project.instagram || project.tiktok ? "cursor-pointer" : "cursor-default"}`}
               style={{ width: isMobile ? "130px" : "256px" }}
               onClick={() => {
                 if (project.video) setActiveVideo(project.video);
-                else if (project.instagram) setActiveInstagram(project.instagram);
+                else if (project.instagram) setActiveEmbed({ src: `https://www.instagram.com/reel/${project.instagram}/embed`, title: "Instagram Reel" });
+                else if (project.tiktok) setActiveEmbed({ src: `https://www.tiktok.com/player/v1/${project.tiktok}?autoplay=1&music_info=0&description=0&rel=0`, title: "TikTok-video" });
               }}
             >
               <ProjectCardInner project={project} isMobile={isMobile} />
@@ -141,9 +151,9 @@ export default function Projects() {
         {activeVideo && <VideoModal src={activeVideo} onClose={() => setActiveVideo(null)} />}
       </AnimatePresence>
 
-      {/* Instagram Reel lightbox */}
+      {/* Instagram / TikTok lightbox */}
       <AnimatePresence>
-        {activeInstagram && <InstagramModal id={activeInstagram} onClose={() => setActiveInstagram(null)} />}
+        {activeEmbed && <EmbedModal src={activeEmbed.src} title={activeEmbed.title} onClose={() => setActiveEmbed(null)} />}
       </AnimatePresence>
 
       {/* Photo lightbox */}
@@ -185,7 +195,7 @@ function Marquee3D({ children, speed = 30, reverse = false, isMobile = false, no
 function ProjectCardInner({ project, isMobile }: { project: typeof projects[0]; isMobile: boolean }) {
   const [hovered, setHovered] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const playable = !!(project.video || project.instagram);
+  const playable = !!(project.video || project.instagram || project.tiktok);
 
   const handleMouseEnter = () => {
     if (isMobile) return;
@@ -229,8 +239,8 @@ function ProjectCardInner({ project, isMobile }: { project: typeof projects[0]; 
           <span className="section-label" style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.55rem" }}>Coming Soon</span>
         </div>
       )}
-      {/* Instagram Reel zonder poster: subtiel play-icoon zodat de kaart niet leeg oogt */}
-      {project.instagram && !project.poster && !isMobile && (
+      {/* Embed zonder poster: subtiel play-icoon zodat de kaart niet leeg oogt */}
+      {(project.instagram || project.tiktok) && !project.poster && !isMobile && (
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" style={{ opacity: hovered ? 0 : 1, transition: "opacity 0.3s" }}>
           <div className="w-12 h-12 border border-white/30 rounded-full flex items-center justify-center">
             <svg className="w-4 h-4 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
@@ -358,7 +368,7 @@ function VideoModal({ src, onClose }: { src: string; onClose: () => void }) {
   );
 }
 
-function InstagramModal({ id, onClose }: { id: string; onClose: () => void }) {
+function EmbedModal({ src, title, onClose }: { src: string; title: string; onClose: () => void }) {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
     document.addEventListener("keydown", onKey);
@@ -385,8 +395,8 @@ function InstagramModal({ id, onClose }: { id: string; onClose: () => void }) {
         </button>
         <div className="relative w-full bg-black rounded-sm overflow-hidden">
           <iframe
-            src={`https://www.instagram.com/reel/${id}/embed`}
-            title="Instagram Reel"
+            src={src}
+            title={title}
             allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
             allowFullScreen
             scrolling="no"

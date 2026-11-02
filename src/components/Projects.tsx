@@ -74,7 +74,7 @@ const projects = [
   {
     // Instagram Reel (fallback zonder eigen MP4). Zet hier later `video: "/bestand.mp4"` neer,
     // dan werkt deze kaart precies zoals de andere films.
-    id: 6, title: "Nacht van de Rechtspraak", category: "Reel · Rechtbank Rotterdam", year: "2026",
+    id: 6, title: "Nacht van de Rechtspraak", category: "Camera & assistent montage · Rechtbank Rotterdam", year: "2026",
     description: "Reel voor de Rotterdamse Nacht van de Rechtspraak.",
     tags: ["Reel"], duration: "",
     gradient: "from-stone-900 via-neutral-800 to-zinc-900",

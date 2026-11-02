@@ -163,8 +163,8 @@ export default function Projects() {
           {[...projects, ...projects].map((project, i) => (
             <div
               key={i}
-              className={`flex-shrink-0 aspect-[3/4] relative overflow-hidden rounded-sm ${project.video || project.instagram || project.tiktok ? "cursor-pointer" : "cursor-default"}`}
-              style={{ width: isMobile ? "130px" : "256px" }}
+              className={`flex-shrink-0 aspect-[5/6] md:aspect-[3/4] relative overflow-hidden rounded-sm ${project.video || project.instagram || project.tiktok ? "cursor-pointer" : "cursor-default"}`}
+              style={{ width: isMobile ? "165px" : "256px" }}
               onClick={() => {
                 if (project.video) setActiveVideo(project.video);
                 else if (project.instagram) setActiveEmbed({ src: `https://www.instagram.com/reel/${project.instagram}/embed`, title: "Instagram Reel" });
@@ -258,7 +258,7 @@ function ProjectCardInner({ project, isMobile }: { project: typeof projects[0]; 
       {project.poster && (
         <Image
           src={project.poster} alt="" fill
-          sizes="(max-width: 768px) 130px, 256px"
+          sizes="(max-width: 768px) 165px, 256px"
           style={{ objectFit: project.posterFit ?? "cover", opacity: hovered ? 0 : 1, transition: "opacity 0.5s" }}
         />
       )}
@@ -291,7 +291,7 @@ function ProjectCardInner({ project, isMobile }: { project: typeof projects[0]; 
       {/* Info overlay */}
       <div className="absolute bottom-0 inset-x-0 p-3 md:p-5 bg-gradient-to-t from-black/90 via-black/40 to-transparent"
         style={{ opacity: hovered ? 0 : 1, transition: "opacity 0.3s" }}>
-        <p className="section-label mb-0.5" style={{ fontSize: "0.55rem" }}>{project.category}</p>
+        <p className="section-label mb-0.5 truncate md:whitespace-normal" style={{ fontSize: isMobile ? "0.5rem" : "0.55rem", letterSpacing: isMobile ? "0.2em" : undefined }}>{project.category}</p>
         <h3 className="text-white font-bold" style={{ fontSize: isMobile ? "0.75rem" : "1.125rem" }}>{project.title}</h3>
       </div>
       {/* Hover overlay — desktop only */}

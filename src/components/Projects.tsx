@@ -82,8 +82,8 @@ const projects = [
     instagram: "DdRZU32MByB",
   },
   {
-    id: 11, title: "YOUR Evening 2026", category: "Camera · ROC Mondriaan · Montage door ByShane", year: "2026",
-    description: "Aftermovie van YOUR Evening 2026 voor ROC Mondriaan. Camera; montage door ByShane.",
+    id: 11, title: "YOUR Evening 2026", category: "Camera · ROC Mondriaan", year: "2026",
+    description: "Aftermovie van YOUR Evening 2026 voor ROC Mondriaan. Camera.",
     tags: ["Aftermovie", "Camera"], duration: "",
     gradient: "from-neutral-900 via-stone-800 to-zinc-900",
     video: undefined, poster: "/poster-your-evening.webp", posterFit: "cover" as const,

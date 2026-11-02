@@ -16,7 +16,7 @@ function useIsMobile() {
 
 const projects = [
   {
-    id: 1, title: "Feel Good Aftermovie", category: "Film", year: "2026",
+    id: 1, title: "Feel Good Aftermovie", category: "Camera & montage · Feel Good Charity", year: "2026",
     description: "Aftermovie voor het Feel Good Charity event.",
     tags: ["Aftermovie", "Event Film"], duration: "",
     gradient: "from-zinc-900 via-neutral-800 to-stone-900",
@@ -25,7 +25,7 @@ const projects = [
   },
   {
     // TikTok-video (fallback zonder eigen MP4).
-    id: 7, title: "The Hunt Promo", category: "TikTok · Jeugdwerk Kaag & Braassem", year: "2026",
+    id: 7, title: "The Hunt Promo", category: "Camera & montage · Jeugdwerk", year: "2026",
     description: "Promovideo voor De Hunt van Jeugdwerk Kaag & Braassem.",
     tags: ["TikTok"], duration: "",
     gradient: "from-zinc-900 via-neutral-800 to-stone-900",
@@ -41,7 +41,7 @@ const projects = [
     instagram: "DWGdYyyDT7W",
   },
   {
-    id: 10, title: "Aftermovie Nacht van de Rechtspraak", category: "Camera & assistent montage", year: "2026",
+    id: 10, title: "Aftermovie Nacht van de Rechtspraak", category: "Camera & assistent montage · Rechtbank Rotterdam", year: "2026",
     description: "Aftermovie van de Rotterdamse Nacht van de Rechtspraak voor Rechtbank Rotterdam. Camera en assistentie bij de montage.",
     tags: ["Aftermovie", "Camera"], duration: "",
     gradient: "from-zinc-900 via-stone-800 to-neutral-900",
@@ -57,7 +57,7 @@ const projects = [
     instagram: "DVLlz76DQhe",
   },
   {
-    id: 9, title: "Maak Kennis: Jurjen", category: "Reel · Jeugdwerk Kaag & Braassem", year: "2026",
+    id: 9, title: "Maak Kennis: Jurjen", category: "Camera & montage · Jeugdwerk", year: "2026",
     description: "Kennismakingsvideo met jongerenwerker Jurjen.",
     tags: ["Reel"], duration: "",
     gradient: "from-stone-900 via-zinc-800 to-neutral-900",
@@ -65,7 +65,7 @@ const projects = [
     instagram: "De_zOypMzNZ",
   },
   {
-    id: 3, title: "Intro Symposium", category: "Motion Graphics", year: "2026",
+    id: 3, title: "Intro Symposium", category: "Montage · ROC Mondriaan", year: "2026",
     description: "Intro video voor het ROC Mondriaan Symposium.",
     tags: ["Motion Graphics", "Event"], duration: "",
     gradient: "from-stone-900 via-zinc-800 to-neutral-900",
@@ -82,7 +82,7 @@ const projects = [
     instagram: "DdRZU32MByB",
   },
   {
-    id: 11, title: "YOUR Evening 2026", category: "Camera · Montage door ByShane", year: "2026",
+    id: 11, title: "YOUR Evening 2026", category: "Camera · ROC Mondriaan · Montage door ByShane", year: "2026",
     description: "Aftermovie van YOUR Evening 2026 voor ROC Mondriaan. Camera; montage door ByShane.",
     tags: ["Aftermovie", "Camera"], duration: "",
     gradient: "from-neutral-900 via-stone-800 to-zinc-900",
@@ -90,7 +90,7 @@ const projects = [
     instagram: "DaQQxTHD_Hd",
   },
   {
-    id: 8, title: "The Hunt Aftermovie", category: "Reel · Jeugdwerk Kaag & Braassem", year: "2026",
+    id: 8, title: "The Hunt Aftermovie", category: "Camera & montage · Jeugdwerk", year: "2026",
     description: "Reel van De Hunt 2026 voor Jeugdwerk Kaag & Braassem.",
     tags: ["Reel"], duration: "",
     gradient: "from-neutral-900 via-zinc-800 to-stone-900",

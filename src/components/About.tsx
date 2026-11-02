@@ -4,7 +4,6 @@ import { motion, useInView } from "framer-motion";
 import Image from "next/image";
 
 
-const skills = ["DaVinci Resolve", "Adobe Premiere Pro", "After Effects", "Camera", "Licht", "Geluid"];
 
 export default function About() {
   const ref = useRef(null);
@@ -88,24 +87,6 @@ export default function About() {
               Mijn doel is om content te maken die professioneel, uniek en impactvol aanvoelt.
             </p>
 
-
-            {/* Skills */}
-            <div>
-              <p className="section-label mb-4">Programma's & Software</p>
-              <div className="flex flex-col gap-2">
-                {skills.map((skill, i) => (
-                  <motion.div key={skill}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={inView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ delay: 0.6 + i * 0.06 }}
-                    className="flex items-center gap-3"
-                  >
-                    <div className="w-4 h-px flex-shrink-0" style={{ background: "rgba(255,255,255,0.2)" }} />
-                    <span className="text-sm" style={{ color: "var(--text-muted)" }}>{skill}</span>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
 
             <motion.div
               initial={{ opacity: 0 }}

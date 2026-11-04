@@ -166,7 +166,7 @@ export default function Contact() {
         >
           {[
             { label: "Adres", value: "Den Haag, NL" },
-            { label: "E-mail", value: "Farachmond@gmail.com", href: "mailto:farachmond@gmail.com" },
+            { label: "E-mail", value: "info@fcproduction.nl", href: "mailto:info@fcproduction.nl" },
             { label: "Telefoon", value: "+31 6 16 05 72 28", href: "tel:+31616057228" },
             { label: "WhatsApp", value: "Stuur een bericht", href: "https://wa.me/31616057228" },
           ].map((item) => (

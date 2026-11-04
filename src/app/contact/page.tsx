@@ -12,7 +12,7 @@ const links = [
   { label: "Instagram", href: "https://www.instagram.com/fcproduction_/", icon: "instagram" },
   { label: "TikTok", href: "https://www.tiktok.com/@fcproduction_?is_from_webapp=1&sender_device=pc", icon: "tiktok" },
   { label: "LinkedIn", href: "https://linkedin.com/company/fcproduction", icon: "linkedin" },
-  { label: "Email", href: "mailto:farachmond@gmail.com", icon: "email" },
+  { label: "Email", href: "mailto:info@fcproduction.nl", icon: "email" },
   { label: "WhatsApp", href: "https://wa.me/31616057228", icon: "whatsapp" },
 ] as const;
 
